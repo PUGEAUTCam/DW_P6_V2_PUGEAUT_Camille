@@ -1,18 +1,19 @@
 const express = require('express');
+const app = express();
+//DOTENV  pour les variables d'environnement
+const dotenv = require("dotenv");
+dotenv.config();
+
+// Import the mongoose module
 const mongoose = require('mongoose');
 
-const app = express();
-
 //Connexion a MongoDB par le module mongoose
-mongoose.connect('mongodb+srv://CamillePugeaut:KItchy1702@cluster0.g6c1q35.mongodb.net/?retryWrites=true&w=majority',
+mongoose.connect(process.env.MONGO_URL,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
 
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
-
-
-
   
 // app.use((req, res, next) => {
 //     res.setHeader('Access-Control-Allow-Origin', '*');

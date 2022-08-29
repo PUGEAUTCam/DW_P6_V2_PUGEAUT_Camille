@@ -4,7 +4,7 @@
   "description": "Serveur pour une API de critique de sauces epicees",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon server.js"
   },
   "author": "Camille PUGEAUT",
   "license": "ISC",

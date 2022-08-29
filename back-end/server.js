@@ -1,18 +1,6 @@
-// DOTENV 
-// const dotenv = require("dotenv");
-// dotenv.config();
-
-// const MY_PORT = process.env.PORT;
-// const MY_APP_SECRET = process.env.APP_SECRET;
-
-// app.get("/", (req, res) => {
-//   return res.send(MY_APP_SECRET);
-// });
-
-// app.listen(MY_PORT, () => console.log(`Server running on port ${MY_PORT}`));
-
 const http = require('http');
 const app = require('./app');
+const cors = require('cors');
 
 const normalizePort = val => {
   const port = parseInt(val, 10);
@@ -58,4 +46,6 @@ server.on('listening', () => {
 });
 
 server.listen(port);
+
+
 
