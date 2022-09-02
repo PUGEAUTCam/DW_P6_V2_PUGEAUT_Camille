@@ -17,27 +17,25 @@ router.get('/', auth, sauceControllers.getAllSauces);
 // Route CRUD pour creer une sauce
 router.post('/', auth, multer, sauceControllers.createSauce);
 
-
 // Route CRUD pour get une sauce avec l'ID
-router.get('/:id', auth, (req, res) => {
-    let result = sauceControllers.getOneSauce(req, res);
-    console.log(result);
-    return null
-});
+router.get('/:id', auth, sauceControllers.getOneSauce);
+
+//Route CRUD pour modifier une sauce 
+router.put('/:id', auth, multer, sauceControllers.modifyOneSauce);
+
+//Route pour supprimer une sauce
+router.delete('/:id', auth, sauceControllers.deleteOneSauce);
+
+//Route pour liker une sauce
+router.post('/:id/like', auth, sauceControllers.likeSauce);
+
+//Route pour disliker une sauce
+// router.post('/:id/like', auth, sauceControllers.dislikeSauce);
 
 
 
 
-
-
-
-// //Route pour mofiier une sauce 
-// router.put('/:id', auth, multer, sauceControllers.modifyOneSauce);
-
-// //Route pour supprimer une sauce
-// router.delete('/:id', auth, sauceControllers.deleteOneSauce);
 
  
-
 // On exporte notre router avec les differentes routes
 module.exports = router;
