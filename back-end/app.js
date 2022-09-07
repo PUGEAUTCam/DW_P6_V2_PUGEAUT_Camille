@@ -1,18 +1,18 @@
-//Import Express et mise en oeuvre
+//Import Express 
 const express = require('express');
 const app = express();
 //Package Helmet pour configurer les en-tetes HTTP
 const helmet = require('helmet');
 // Import the mongoose module
 const mongoose = require('mongoose');
-//Impot pour acceder au path du serveur
+//Import pour acceder au path du serveur
 const path = require('path');
 
 //Import des routes
 const userRoutes = require('./routes/user');
 const sauceRoutes = require('./routes/sauce')
 
-//Utilisation de Helmet pour la securite
+//Utilisation de Helmet pour la securite : setting various HTTP headers
 app.use(helmet());
 
 //Middleware qui gere les requete POST venant du front en extrayant le corps JSON

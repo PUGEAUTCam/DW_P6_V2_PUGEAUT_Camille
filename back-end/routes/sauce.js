@@ -29,13 +29,7 @@ router.delete('/:id', auth, sauceControllers.deleteOneSauce);
 //Route pour liker une sauce
 router.post('/:id/like', auth, sauceControllers.likeSauce);
 
-//Route pour disliker une sauce
-// router.post('/:id/like', auth, sauceControllers.dislikeSauce);
 
 
-
-
-
- 
 // On exporte notre router avec les differentes routes
 module.exports = router;

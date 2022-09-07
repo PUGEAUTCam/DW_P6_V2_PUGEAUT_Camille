@@ -1,3 +1,4 @@
+//Charge le module HTTP
 const http = require('http');
 
 //Import de app.js avec Express
