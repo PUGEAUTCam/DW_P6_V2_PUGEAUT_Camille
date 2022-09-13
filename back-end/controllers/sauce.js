@@ -1,5 +1,6 @@
 const Sauce = require('../models/Sauce');
 const fs = require('fs');
+const { error } = require('console');
 
 //Pour creer une sauce
 exports.createSauce = (req, res, next) => {
@@ -44,7 +45,7 @@ exports.modifyOneSauce = (req, res, next) => {
     // File in request ?
     const sauceBody = req.file ? {
         ...JSON.parse(req.body.sauce),
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
     } : { ...req.body };
 
     delete sauceBody._userId;
@@ -54,8 +55,14 @@ exports.modifyOneSauce = (req, res, next) => {
         .then((sauce) => {
             if (sauce.userId != req.auth.userId) {
                 res.status(403).json({ message: 'Not authorized' });
-            } else {
-                //It's the same 
+            }
+            else {
+                //On supprime l'ancienne image de la BDD
+                const filename = sauce.imageUrl.split('/images/')[1];
+                fs.unlink(`images/${filename}`, (err) => {
+                    if (err) throw error;
+                });
+
                 Sauce.updateOne({ _id: req.params.id }, { ...sauceBody, _id: req.params.id })
                     .then(() => res.status(200).json({ message: 'Sauce parfaitement modifiée' }))
                     .catch(error => res.status(401).json({ error }));
@@ -66,6 +73,9 @@ exports.modifyOneSauce = (req, res, next) => {
             res.status(400).json({ error });
         });
 };
+
+
+
 
 
 //Pour supprimer 
