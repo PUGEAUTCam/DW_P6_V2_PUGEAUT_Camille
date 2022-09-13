@@ -1,6 +1,5 @@
 const Sauce = require('../models/Sauce');
 const fs = require('fs');
-//On exporte la fonction/logique metier/ methode qui va etre attribuee aux routes
 
 //Pour creer une sauce
 exports.createSauce = (req, res, next) => {
